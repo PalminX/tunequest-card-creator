@@ -90,7 +90,7 @@ const BINGO_CATEGORIES = [
 ];
 
 const generateBingoCard = () => {
-    const squares = [];
+    const squares: typeof BINGO_CATEGORIES[0][] = [];
     // Add exactly 5 squares for each category
     BINGO_CATEGORIES.forEach(category => {
         for (let i = 0; i < 5; i++) {
@@ -705,33 +705,36 @@ When creating your playlist you need to pay attention to select the original tra
                         <Document>
                             {arrayChunks(bingoCards, 8).map((pageCards, pageIndex) => (
                                 <PDFPage size="A4" key={`bingo-page-${pageIndex}`} style={{
-                                    paddingLeft: '0.5cm',
-                                    paddingRight: '0.5cm',
-                                    paddingTop: '0.75cm',
-                                    paddingBottom: '0.75cm',
+                                    paddingLeft: '0.7cm',
+                                    paddingRight: '0.7cm',
+                                    paddingTop: '0.7cm',
+                                    paddingBottom: '0.7cm',
                                     display: 'flex',
                                     flexDirection: 'row',
                                     flexWrap: 'wrap',
-                                    justifyContent: 'space-between',
-                                    alignContent: 'flex-start',
-                                    gap: '3px',
+                                    justifyContent: 'center',
+                                    alignContent: 'center',
+                                    gap: 0,
                                 }}>
                                     {pageCards.map((card, cardIndex) => (
                                         <View key={`card-${cardIndex}`} style={{
-                                            width: '9.5cm',
-                                            height: '6.5cm',
+                                            width: '9.8cm',
+                                            height: '7.075cm',
                                             border: '2px solid #000',
                                             padding: '5px',
                                             display: 'flex',
                                             flexDirection: 'row',
-                                            gap: '5px',
+                                            gap: 0,
                                         }}>
-                                            {/* Left side: Grid */}
+                                            {/* Left side: 5x5 Grid, square */}
                                             <View style={{
+                                                width: '6.7cm',
+                                                height: '6.7cm',
+                                                marginTop: 'auto',
+                                                marginBottom: 'auto',
                                                 display: 'flex',
                                                 flexDirection: 'column',
                                             }}>
-                                                {/* 5x5 Grid */}
                                                 {[0, 1, 2, 3, 4].map(row => (
                                                     <View key={`row-${row}`} style={{
                                                         display: 'flex',
@@ -742,8 +745,8 @@ When creating your playlist you need to pay attention to select the original tra
                                                             const category = card[squareIndex];
                                                             return (
                                                                 <View key={`square-${row}-${col}`} style={{
-                                                                    width: '1.25cm',
-                                                                    height: '1.25cm',
+                                                                    width: `${6.7/5}cm`,
+                                                                    height: `${6.7/5}cm`,
                                                                     backgroundColor: category.color,
                                                                     border: '1px solid #000',
                                                                     display: 'flex',
@@ -763,10 +766,10 @@ When creating your playlist you need to pay attention to select the original tra
                                                     </View>
                                                 ))}
                                             </View>
-                                            
-                                            {/* Right side: Answer field */}
+                                            {/* Right side: Answer field uses remaining width */}
                                             <View style={{
-                                                width: '3.3cm',
+                                                width: `${9.8-7.075}cm`,
+                                                height: '6.7cm',
                                                 border: '1px solid #999',
                                                 borderRadius: '4px',
                                                 padding: '3px',
