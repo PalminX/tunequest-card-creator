@@ -705,18 +705,21 @@ When creating your playlist you need to pay attention to select the original tra
                         <Document>
                             {arrayChunks(bingoCards, 8).map((pageCards, pageIndex) => (
                                 <PDFPage size="A4" key={`bingo-page-${pageIndex}`} style={{
-                                    padding: '10px',
+                                    paddingLeft: '0.5cm',
+                                    paddingRight: '0.5cm',
+                                    paddingTop: '0.75cm',
+                                    paddingBottom: '0.75cm',
                                     display: 'flex',
                                     flexDirection: 'row',
                                     flexWrap: 'wrap',
-                                    justifyContent: 'flex-start',
+                                    justifyContent: 'space-between',
                                     alignContent: 'flex-start',
-                                    gap: '5px',
+                                    gap: '3px',
                                 }}>
                                     {pageCards.map((card, cardIndex) => (
                                         <View key={`card-${cardIndex}`} style={{
-                                            width: '9.8cm',
-                                            height: '6.7cm',
+                                            width: '9.5cm',
+                                            height: '6.5cm',
                                             border: '2px solid #000',
                                             padding: '5px',
                                             display: 'flex',
